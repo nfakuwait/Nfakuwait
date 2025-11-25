@@ -51,10 +51,10 @@ export default function About() {
           </p>
 
           <blockquote className="italic bg-white/70 backdrop-blur-sm shadow-md rounded-xl px-6 py-4 mt-10 border-l-4 border-yellow-500 mx-auto max-w-xl">
-            "Registered under the Indian Embassy - INDEMB/KWT/ASSN/245, Kuwait on 12th August 2013."
+            "Registered under the Indian Embassy - INDEMB/KWT/ASSN/245, <br /> Kuwait on 12th August 2013."
           </blockquote>
           <blockquote className="italic bg-white/70 backdrop-blur-sm shadow-md rounded-xl px-6 py-4 mt-10 border-l-4 border-yellow-500 mx-auto max-w-xl">
-            "Registered under the <strong>TAMIL VIRTUAL ACADEMY - Government of Tamilnadu</strong> , Chennai, India."
+            "Registered under the <strong>TAMIL VIRTUAL ACADEMY - <br /> Government of Tamilnadu</strong> , Chennai, India."
           </blockquote>
         </motion.section>
 
@@ -151,7 +151,7 @@ export default function About() {
           <div className="grid gap-10 sm:grid-cols-2 xl:grid-cols-3">
             {[
               {
-                img: "https://res.cloudinary.com/delx0bz9t/image/upload/v1763916882/85259813_2450305525221965_6022690449993498624_n.jpg_jmalnk.jpg",
+                img: "https://res.cloudinary.com/delx0bz9t/image/upload/v1764083819/Tamil-course-300x188_vnnjs9.png",
                 title: "Promotion of Tamil",
                 color: "text-blue-700",
                 text: "We host debates, literature competitions, speech contests and Tamil language classes.",

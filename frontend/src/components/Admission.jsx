@@ -75,8 +75,8 @@ export function Admission() {
 
           </div>
         </div>
-<blockquote className="italic bg-white/70 backdrop-blur-sm shadow-md rounded-xl px-6 py-4 mt-10 border-l-4 border-yellow-500 mx-auto max-w-xl">
-            "Registered under the <strong>TAMIL VIRTUAL ACADEMY - Government of Tamilnadu</strong> , Chennai, India."
+<blockquote className="italic bg-white/70 backdrop-blur-sm text-center shadow-md rounded-xl px-6 py-4 mt-10 border-l-4 border-yellow-500 mx-auto max-w-xl">
+            "Registered under the <strong>TAMIL VIRTUAL ACADEMY - <br /> Government of Tamilnadu</strong> , Chennai, India."
           </blockquote>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
