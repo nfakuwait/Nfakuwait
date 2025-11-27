@@ -310,36 +310,60 @@ export default function Homepage() {
 
       {/* MODAL (responsive) */}
       {selectedEvent && (
-        <div className="fixed inset-0 bg-black/70 z-50 flex items-end  sm:items-center justify-center p-4 sm:p-6">
-          <motion.div
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 40, opacity: 0 }}
-            className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-full max-h-[92vh] overflow-hidden flex flex-col"
-          >
-            <div className="relative">
-              <button
-                onClick={() => setSelectedEvent(null)}
-                className="absolute right-3 top-3 text-2xl text-gray-700 hover:text-red-500 z-10"
-                aria-label="close"
-              >
-                ×
-              </button>
+  <div className="fixed inset-0 bg-black/70 z-50 flex  items-center justify-center p-2 sm:p-6">
+    <motion.div
+      initial={{ y: 40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: 40, opacity: 0 }}
+      className="
+        bg-white 
+        rounded-xl 
+        shadow-xl 
+        w-full 
+        max-w-lg 
+        max-h-[90vh] 
+        overflow-hidden 
+        flex 
+        
+        flex-col
+      "
+    >
+      {/* CLOSE BUTTON */}
+      <button
+        onClick={() => setSelectedEvent(null)}
+        className="absolute  p-1 text-2xl  text-slate-800 hover:text-red-500 z-10"
+        aria-label="close"
+      >
+        X
+      </button>
 
-              {selectedEvent.image ? (
-                <img src={selectedEvent.image} alt={selectedEvent.event} className="w-full scale-90 sm:h- object-cover" />
-              ) : (
-                <div className="w-full h-44 sm:h-56 bg-slate-100" />
-              )}
-            </div>
+      {/* IMAGE */}
+      <div className="w-full max-h-56  sm:max-h-72 overflow-hidden">
+        {selectedEvent.image ? (
+          <img
+            src={selectedEvent.image}
+            alt={selectedEvent.event}
+            className="w-full h-full scale-90 object-cover"
+          />
+        ) : (
+          <div className="w-full h-44 sm:h-56 bg-slate-100" />
+        )}
+      </div>
 
-            <div className="p-4 sm:p-5 overflow-y-auto">
-              <h2 className="text-lg sm:text-2xl font-bold text-center mb-3">{selectedEvent.event}</h2>
-              <p className="text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base">{selectedEvent.post}</p>
-            </div>
-          </motion.div>
-        </div>
-      )}
+      {/* CONTENT */}
+      <div className="p-4 sm:p-5 overflow-y-auto">
+        <h2 className="text-xl sm:text-2xl font-bold text-center mb-3">
+          {selectedEvent.event}
+        </h2>
+
+        <p className="text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base">
+          {selectedEvent.post}
+        </p>
+      </div>
+    </motion.div>
+  </div>
+)}
+
 
       <Footer />
     </>

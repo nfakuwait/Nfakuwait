@@ -40,7 +40,7 @@ export default function Teacher() {
         "Expert in grammar, spoken English, and creative writing with a student-friendly approach.",
       image:
         "https://res.cloudinary.com/delx0bz9t/image/upload/v1764263696/user_on76lm.png",
-      location: "abasiya",
+      location: "abbassiya",
     },
     {
       _id: "t004",
@@ -80,21 +80,19 @@ export default function Teacher() {
           setTeacher(sampleData);
         }
       })
-      .catch(() => {
-        setTeacher(sampleData);
-      })
+      .catch(() => setTeacher(sampleData))
       .finally(() => setLoading(false));
   }, []);
 
   // GROUP TEACHERS
   const grouped = {
     Mangaf: teacher.filter((t) => t.location?.toLowerCase() === "mangaf"),
-    Abasiya: teacher.filter((t) => t.location?.toLowerCase() === "abasiya"),
+    Abbassiya: teacher.filter((t) => t.location?.toLowerCase() === "abbassiya"),
     Salmiya: teacher.filter((t) => t.location?.toLowerCase() === "salmiya"),
     Abuhalifa: teacher.filter((t) => t.location?.toLowerCase() === "abuhalifa"),
   };
 
-  // RENDER SECTION
+  // REUSABLE SECTION
   const renderSection = (placeName, list) => (
     <div className="mb-20">
       <motion.h2
@@ -120,9 +118,9 @@ export default function Teacher() {
         }}
         viewport={{ once: true }}
       >
-        {list.map((item, idx) => (
+        {list.map((item) => (
           <motion.div
-            key={item._id || idx}
+            key={item._id}
             className="group relative rounded-xl overflow-hidden bg-white/80 backdrop-blur-xl shadow-md hover:shadow-xl border border-slate-200 transition-all duration-500"
             variants={{
               hidden: { opacity: 0, y: 40 },
@@ -185,7 +183,7 @@ export default function Teacher() {
         {!loading && (
           <div className="space-y-24">
             {renderSection("Mangaf", grouped.Mangaf)}
-            {renderSection("Abasiya", grouped.Abasiya)}
+            {renderSection("Abbassiya", grouped.Abbassiya)}
             {renderSection("Salmiya", grouped.Salmiya)}
             {renderSection("Abuhalifa", grouped.Abuhalifa)}
           </div>

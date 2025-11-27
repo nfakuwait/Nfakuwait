@@ -19,25 +19,31 @@ const Ads = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // HIDE instantly & SHOW again after 9000 seconds
+  const handleClick = () => {
+    setVisible(false); // hide immediately
+
+    // 9000 sec = 9000 * 1000 = 9,000,000 ms
+    setTimeout(() => {
+      setVisible(true); // show again after time
+    }, 9000);
+  };
+
   if (!visible) return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 flex justify-center pb-3">
       <div className="relative">
 
-        {/* RESPONSIVE CLOSE BUTTON */}
+        {/* CLOSE BUTTON */}
         <button
-          onClick={() => setVisible(false)}
+          onClick={handleClick}
           className="
             absolute
             -top-2 -right-2
             bg-red-600 text-white 
             rounded-full shadow-lg z-20
-
-            /* Mobile size */
             w-6 h-6 text-xs flex items-center justify-center
-
-            /* Larger on MD+ screens */
             md:w-7 md:h-7 md:text-sm
           "
         >
