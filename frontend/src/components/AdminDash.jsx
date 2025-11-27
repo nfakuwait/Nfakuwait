@@ -3,6 +3,7 @@ import AdminModal from "./AdminModal.jsx";
 import EditMemberModal from "./EditMemberModal.jsx";
 import EditTeacherModal from "./EditTeacherModal.jsx";
 
+
 const StatusMessage = ({ message, type }) => {
   if (!message) return null;
   const types = {
@@ -159,6 +160,7 @@ export default function AdminDash() {
     name: "",
     position: "",
     email: "",
+    place:"",
     description: "",
   });
 
@@ -425,9 +427,10 @@ Output plain text only.`
 
     const fd = new FormData();
     fd.append("mname", teachersForm.name);
-    fd.append("position", teachersForm.position);
-    fd.append("description", teachersForm.description);
-    fd.append("email", teachersForm.email);
+    fd.append("position", teachersForm.position ? teachersForm.position : "");
+
+    fd.append("description", teachersForm.description ?teachersForm.description:"" );
+    fd.append("email", teachersForm.email ? teachersForm.email : "");
     if (teacherImage) fd.append("image", teacherImage);
 
     try {
@@ -440,7 +443,7 @@ Output plain text only.`
 
       setTeacherStatus({ message: "Teacher Added!", type: "success" });
       setTeachersForm({ name: "", position: "", email: "", description: "" });
-      setTeacherImage(null);
+      setTeacherImage(null);  
       e.target.reset();
     } catch {
       setTeacherStatus({ message: "Failed to add Teacher.", type: "error" });
@@ -1169,7 +1172,15 @@ Output plain text only.`
                     value={teachersForm.email}
                     placeholder="Email"
                     onChange={handleInputChange(setTeachersForm)}
-                    required
+                    
+                  />
+                  <input
+                    className={inputClass}
+                    name="place"
+                    value={teachersForm.place}
+                    placeholder="place"
+                    onChange={handleInputChange(setTeachersForm)}
+                    
                   />
                   <input
                     className={inputClass}
@@ -1177,7 +1188,7 @@ Output plain text only.`
                     value={teachersForm.position}
                     placeholder="Position"
                     onChange={handleInputChange(setTeachersForm)}
-                    required
+                    
                   />
 
                   <div>
@@ -1197,7 +1208,6 @@ Output plain text only.`
                       name="description"
                       value={teachersForm.description}
                       onChange={handleInputChange(setTeachersForm)}
-                      required
                     />
                   </div>
 

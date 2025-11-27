@@ -116,6 +116,7 @@ const TeacherSchema = new mongoose.Schema({
   position: String,
   email: String,
   image: String,
+  place: String,
   description: String,
 });
 const Teacher = mongoose.model("Teacher", TeacherSchema);
@@ -605,16 +606,18 @@ app.post("/sent-reply", async (req, res) => {
 
 app.post("/teacher", uploadTeacher.single("image"), async (req, res) => {
   try {
-    const { mname, email, description, position } = req.body;
+    const { mname, email, description, position,place } = req.body;
     const newTeacher = new Teacher({
       mname,
       email,
       position,
+      place,
       description,
-      image: req.file?.path || "",
+      image: req.file?.path || "https://res.cloudinary.com/delx0bz9t/image/upload/v1764263696/user_on76lm.png",
     });
     await newTeacher.save();
     res.status(201).json(newTeacher);
+    
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error saving Teacher member" });

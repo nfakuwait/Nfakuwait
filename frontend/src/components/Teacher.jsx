@@ -74,6 +74,7 @@ export default function Teacher() {
                 {/* IMAGE FIXED */}
                 <div className="relative w-full aspect-[3/4] overflow-hidden bg-blue-50">
                   <motion.img
+                  
                     src={
                       item.image ||
                       "https://via.placeholder.com/400x300?text=Teacher"
@@ -99,6 +100,7 @@ export default function Teacher() {
                   <p className="text-gray-600 mt-3 text-sm leading-relaxed italic line-clamp-3">
                     {item.description || "No description available."}
                   </p>
+                  
                 </div>
               </motion.div>
             ))}
