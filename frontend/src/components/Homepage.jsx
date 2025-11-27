@@ -163,7 +163,7 @@ export default function Homepage() {
         </div>
 
         <motion.div
-          className="absolute bottom-6 cursor-pointer"
+          className="absolute bottom-20 cursor-pointer"
           onClick={scrollToEvents}
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.6 }}
@@ -211,7 +211,7 @@ export default function Homepage() {
 
                >
                   {event.image ? (
-                    <img src={event.image} alt={event.event} className="w-full h-48 sm:h-56 object-cover rounded-t-3xl" />
+                    <img src={event.image} alt={event.event} className="w-full h- sm:h- object-cover rounded-t-3xl" />
                   ) : (
                     <div className="w-full h-48 sm:h-56 bg-slate-100 rounded-t-3xl flex items-center justify-center text-sm text-gray-400">No image</div>
                   )}
@@ -259,7 +259,7 @@ export default function Homepage() {
                   className="rounded-2xl bg-white shadow-md hover:shadow-xl cursor-pointer overflow-hidden border border-slate-200"
                 >
                   {event.image ? (
-                    <img src={event.image} alt={event.event} className="w-full h-44 sm:h-48 object-cover" />
+                    <img src={event.image} alt={event.event} className="w-full h- scale-90 rounded-xl sm:h- object-cover" />
                   ) : (
                     <div className="w-full h-44 sm:h-48 bg-slate-100 flex items-center justify-center text-sm text-gray-400">No image</div>
                   )}
@@ -291,7 +291,7 @@ export default function Homepage() {
                   className="rounded-2xl bg-slate-100 shadow-md hover:shadow-xl cursor-pointer overflow-hidden border border-slate-200"
                 >
                   {event.image ? (
-                    <img src={event.image} alt={event.event} className="w-full h-44 sm:h-48 object-cover opacity-90" />
+                    <img src={event.image} alt={event.event} className="w-full h- sm:h- object-cover opacity-90" />
                   ) : (
                     <div className="w-full h-44 sm:h-48 bg-slate-200 flex items-center justify-center text-sm text-gray-400">No image</div>
                   )}
@@ -310,12 +310,12 @@ export default function Homepage() {
 
       {/* MODAL (responsive) */}
       {selectedEvent && (
-        <div className="fixed inset-0 bg-black/70 z-50 flex items-end sm:items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-end  sm:items-center justify-center p-4 sm:p-6">
           <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 40, opacity: 0 }}
-            className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-full sm:max-w-lg max-h-[92vh] overflow-hidden flex flex-col"
+            className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-full max-h-[92vh] overflow-hidden flex flex-col"
           >
             <div className="relative">
               <button
@@ -327,7 +327,7 @@ export default function Homepage() {
               </button>
 
               {selectedEvent.image ? (
-                <img src={selectedEvent.image} alt={selectedEvent.event} className="w-full h-44 sm:h-56 object-cover" />
+                <img src={selectedEvent.image} alt={selectedEvent.event} className="w-full scale-90 sm:h- object-cover" />
               ) : (
                 <div className="w-full h-44 sm:h-56 bg-slate-100" />
               )}

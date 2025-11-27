@@ -13,13 +13,14 @@ import InstallPrompt from "./components/InstallPrompt.jsx";
 import TranslateFloatingButton from "./components/TranslateFloatingButton.jsx";
 import Teacher from "./components/Teacher.jsx";
 import AdmissionForm from "./components/AdmissionForm.jsx";
-import Comingsoon from "./components/Coming.jsx";
+import Ads from "./components/Ads.jsx";
+// import Comingsoon from "./components/Coming.jsx";
 
 export default function App() {
   return (
     <>
       <Router>
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route path="/login" element={<Login />}></Route>
           <Route
@@ -31,9 +32,9 @@ export default function App() {
               </ProtectedRoute>
             }
           ></Route>
-            <Route path="/" element={<Comingsoon />}></Route>
+            {/* <Route path="/" element={<Comingsoon />}></Route> */}
           <Route path="/about" element={<About />}></Route>
-          {/* <Route path="/" element={<Homepage />}></Route> */}
+          <Route path="/" element={<Homepage />}></Route>
           <Route path="/admission" element={<Admission />}></Route>
           <Route path="/gallery" element={<Gallery />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
@@ -41,6 +42,7 @@ export default function App() {
         
           <Route path="/admissionform" element={<AdmissionForm />}></Route>
         </Routes>
+          <Ads/>
       </Router>
       <InstallPrompt/>
       <TranslateFloatingButton />
