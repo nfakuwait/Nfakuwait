@@ -3,7 +3,6 @@ import AdminModal from "./AdminModal.jsx";
 import EditMemberModal from "./EditMemberModal.jsx";
 import EditTeacherModal from "./EditTeacherModal.jsx";
 
-
 const StatusMessage = ({ message, type }) => {
   if (!message) return null;
   const types = {
@@ -160,7 +159,7 @@ export default function AdminDash() {
     name: "",
     position: "",
     email: "",
-    place:"",
+    place: "",
     description: "",
   });
 
@@ -181,7 +180,6 @@ export default function AdminDash() {
   const [memberStatus, setMemberStatus] = useState({ message: "", type: "" });
   const [isSubmittingMember, setIsSubmittingMember] = useState(false);
   const [isGeneratingBio, setIsGeneratingBio] = useState(false);
-
 
   const [selectedForm, setSelectedForm] = useState(null);
   const [admissiondata, setAdmissiondata] = useState([]);
@@ -428,8 +426,11 @@ Output plain text only.`
     const fd = new FormData();
     fd.append("mname", teachersForm.name);
     fd.append("position", teachersForm.position ? teachersForm.position : "");
-
-    fd.append("description", teachersForm.description ?teachersForm.description:"" );
+    fd.append("place", teachersForm.place ? teachersForm.place : "");
+    fd.append(
+      "description",
+      teachersForm.description ? teachersForm.description : ""
+    );
     fd.append("email", teachersForm.email ? teachersForm.email : "");
     if (teacherImage) fd.append("image", teacherImage);
 
@@ -442,8 +443,14 @@ Output plain text only.`
       setTeachersData((prev) => [...prev, newTeacher]);
 
       setTeacherStatus({ message: "Teacher Added!", type: "success" });
-      setTeachersForm({ name: "", position: "", email: "", description: "" });
-      setTeacherImage(null);  
+      setTeachersForm({
+        name: "",
+        position: "",
+        email: "",
+        place: "",
+        description: "",
+      });
+      setTeacherImage(null);
       e.target.reset();
     } catch {
       setTeacherStatus({ message: "Failed to add Teacher.", type: "error" });
@@ -524,7 +531,7 @@ Output plain text only.`
           date: selectedContact.createdAt,
         }),
       });
-      alert("✅ Email Sent Successfully");  
+      alert("✅ Email Sent Successfully");
       handleChange(selectedContact._id);
       setReplyMessage("");
     } catch {
@@ -534,7 +541,7 @@ Output plain text only.`
     }
   };
 
-    const sendFormEmail = async () => {
+  const sendFormEmail = async () => {
     if (!replyMessage.trim()) return;
     setSendingEmail(true);
     try {
@@ -547,7 +554,7 @@ Output plain text only.`
           date: new Date().toISOString(),
         }),
       });
-      alert("✅ Email Sent Successfully");  
+      alert("✅ Email Sent Successfully");
       handleFormChange(selectedForm._id);
       setReplyMessage("");
     } catch {
@@ -556,7 +563,6 @@ Output plain text only.`
       setSendingEmail(false);
     }
   };
-
 
   const handleFormChange = async (id) => {
     try {
@@ -581,33 +587,42 @@ Output plain text only.`
     <>
       <div className="min-h-screen pt-20 bg-gray-100">
         <div className="lg:max-w-screen  mx-auto px-4 pb-10">
-          <h1 className="text-3xl font-bold text-center text-cyan-800 mb-6">
+          <div className="">
+            <h1 className="text-3xl font-bold text-center text-cyan-800 mb-6">
             Admin Dashboard
           </h1>
+          {/* <button>
+
+          </button> */}
+          </div>
 
           {/* TABS */}
           <div className="flex gap-3 flex-wrap justify-center mb-8">
-           {["users", "events", "members", "contacts", "admissions", "teachers"].map(
-
-              (tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-5 py-2 rounded-lg font-medium transition ${
-                    activeTab === tab
-                      ? "bg-cyan-800 text-white shadow"
-                      : "bg-white border border-gray-300 hover:bg-gray-50"
-                  }`}
-                >
-                  {tab === "users" && "User Management"}
-                  {tab === "events" && "Events"}
-                  {tab === "members" && "Gallery Members"}
-                  {tab === "teachers" && "Teachers"}
-                  {tab === "contacts" && "Contacts"}
-                  {tab === "admissions" && "Admissions"}
-                </button>
-              )
-            )}
+            {[
+              "users",
+              "events",
+              "members",
+              "contacts",
+              "admissions",
+              "teachers",
+            ].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-5 py-2 rounded-lg font-medium transition ${
+                  activeTab === tab
+                    ? "bg-cyan-800 text-white shadow"
+                    : "bg-white border border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                {tab === "users" && "User Management"}
+                {tab === "events" && "Events"}
+                {tab === "members" && "Gallery Members"}
+                {tab === "teachers" && "Teachers"}
+                {tab === "contacts" && "Contacts"}
+                {tab === "admissions" && "Admissions"}
+              </button>
+            ))}
           </div>
 
           {/* USERS */}
@@ -1108,14 +1123,15 @@ Output plain text only.`
                     <p>
                       <b>Mobile:</b> {selectedForm.phone}
                     </p>
-                    <p className=""> 
+                    <p className="">
                       <b>Course:</b> {selectedForm.course}
                     </p>
                     <p>
                       <b>Gender:</b> {selectedForm.gender}
                     </p>
                     <p>
-                      <b>School & Grade:</b> {selectedForm.school} & {selectedForm.grade}
+                      <b>School & Grade:</b> {selectedForm.school} &{" "}
+                      {selectedForm.grade}
                     </p>
                     <p>
                       <b>Gender:</b> {selectedForm.gender}
@@ -1124,14 +1140,17 @@ Output plain text only.`
                       <b>Address:</b> {selectedForm.address}
                     </p>
 
-
-                  <label htmlFor="textarea" className="font-bold text-center  mx-auto">
-                    <textarea
-                      className={inputClass + " min-h-24 mt-2"}
-                      placeholder="Type reply..."
-                      value={replyMessage}
-                      onChange={(e) => setReplyMessage(e.target.value)}
-                    /></label>
+                    <label
+                      htmlFor="textarea"
+                      className="font-bold text-center  mx-auto"
+                    >
+                      <textarea
+                        className={inputClass + " min-h-24 mt-2"}
+                        placeholder="Type reply..."
+                        value={replyMessage}
+                        onChange={(e) => setReplyMessage(e.target.value)}
+                      />
+                    </label>
 
                     <button
                       className={buttonPrimary}
@@ -1172,7 +1191,6 @@ Output plain text only.`
                     value={teachersForm.email}
                     placeholder="Email"
                     onChange={handleInputChange(setTeachersForm)}
-                    
                   />
                   <input
                     className={inputClass}
@@ -1180,7 +1198,6 @@ Output plain text only.`
                     value={teachersForm.place}
                     placeholder="place"
                     onChange={handleInputChange(setTeachersForm)}
-                    
                   />
                   <input
                     className={inputClass}
@@ -1188,7 +1205,6 @@ Output plain text only.`
                     value={teachersForm.position}
                     placeholder="Position"
                     onChange={handleInputChange(setTeachersForm)}
-                    
                   />
 
                   <div>

@@ -607,6 +607,7 @@ app.post("/sent-reply", async (req, res) => {
 app.post("/teacher", uploadTeacher.single("image"), async (req, res) => {
   try {
     const { mname, email, description, position,place } = req.body;
+    console.log(req.body)
     const newTeacher = new Teacher({
       mname,
       email,
